@@ -26,7 +26,7 @@ public extension MutableCollection where Index == Int {
 public extension Collection {
     
     /// Return a copy of `self` with its elements shuffled
-    public func shuffled() -> [Iterator.Element] {
+    public var shuffled: [Iterator.Element] {
         var list = Array(self)
         list.shuffle()
         return list
