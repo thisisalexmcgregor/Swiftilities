@@ -2,7 +2,7 @@ import UIKit
 
 public extension UIView {
     
-    func showLayoutGuides(recursively: Bool) {
+    public func showLayoutGuides(recursively: Bool) {
         
         //Recursively show layout guides if necessary
         if recursively {

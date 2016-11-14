@@ -13,18 +13,18 @@ public extension UIColor {
         return .none
     }
     
-    convenience init?(hex: String, alpha: CGFloat = 1.0) {
+    public convenience init?(hex: String, alpha: CGFloat = 1.0) {
         guard let hexInt = Int(hex) else { return nil }
         let components = (red: CGFloat((hexInt >> 16) & 0xff) / 255, green: CGFloat((hexInt >> 08) & 0xff) / 255, blue: CGFloat((hexInt >> 00) & 0xff) / 255)
         self.init(red: components.red, green: components.green, blue: components.blue, alpha: alpha)
     }
     
-    convenience init(rgb: UInt32, alpha: CGFloat = 1.0) {
+    public convenience init(rgb: UInt32, alpha: CGFloat = 1.0) {
         let components = (red: CGFloat((rgb & 0xFF0000) >> 16) / 255, green: CGFloat((rgb & 0x00FF00) >> 16) / 255, blue: CGFloat((rgb & 0x0000FF) >> 16) / 255)
         self.init(red: components.red, green: components.green, blue: components.blue, alpha: alpha)
     }
     
-    var hex: String? {
+    public var hex: String? {
         if let components = rgbaComponents {
             let rgb = Int(Int((components.red * 255)) << 16) | Int(Int((components.green * 255)) << 8) | Int(Int((components.blue * 255)) << 0)
             return String(format: "#%06X", rgb)
@@ -33,7 +33,7 @@ public extension UIColor {
         return .none
     }
     
-    var rgb: UInt32? {
+    public var rgb: UInt32? {
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         if getRed(&r, green: &g, blue: &b, alpha: &a) {
             let rgb: UInt32 = (UInt32(a * 255.0) << 24) + (UInt32(r * 255.0) << 16) +  (UInt32(g * 255.0) << 8) + UInt32(b * 255.0)
@@ -43,7 +43,7 @@ public extension UIColor {
         return .none
     }
     
-    func modifying(alpha: CGFloat) -> UIColor? {
+    public func modifying(alpha: CGFloat) -> UIColor? {
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         
         if getRed(&r, green: &g, blue: &b, alpha: &a) {
@@ -54,7 +54,7 @@ public extension UIColor {
     }
     
     ///factor 0 - 1
-    func lighter(by factor: CGFloat) -> UIColor? {
+    public func lighter(by factor: CGFloat) -> UIColor? {
         let f = min(max(factor, 0), 1)
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         
@@ -66,7 +66,7 @@ public extension UIColor {
     }
     
     /// factor 0 - 1
-    func darker(by factor: CGFloat) -> UIColor? {
+    public func darker(by factor: CGFloat) -> UIColor? {
         let f = min(max(factor, 0), 1)
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
         
